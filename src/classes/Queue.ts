@@ -40,8 +40,8 @@ class Queue<T> {
     this.items = [];
   }
 
-  getItems(): T[] {
-    return this.items;
+  getAllItems(): T[] {
+    return [...this.items];
   }
 }
 

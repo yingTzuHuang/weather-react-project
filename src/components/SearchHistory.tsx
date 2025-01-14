@@ -1,14 +1,14 @@
 import { FC } from "react";
-import { WeatherHistoryItem } from "../models/WeatherHistoryItem";
+import { SearchHistoryItem } from "../models/WeatherHistoryItem";
 import { getFormattedDateTime } from "../utils/dateUtil";
 import { IconButton } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 interface SearchHistoryProps {
-  items: WeatherHistoryItem[];
+  items: SearchHistoryItem[];
   onSearch: (city: string) => void;
-  onDelete: (city: string) => void;
+  onDelete: (id: number) => void;
   error: string | null;
   loading: boolean;
 }
@@ -20,12 +20,16 @@ const SearchHistory: FC<SearchHistoryProps> = ({
   error,
   loading,
 }) => {
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
   if (loading) {
     return <div>Loading...</div>;
   }
 
-  if (error) {
-    return <div>Error: {error}</div>;
+  if (!items || items?.length === 0) {
+    return <div>No Record Found</div>;
   }
 
   return (
@@ -33,7 +37,8 @@ const SearchHistory: FC<SearchHistoryProps> = ({
       <h2>Search History</h2>
       <ul>
         {items.map((item) => (
-          <li key={item.searchDateTime.getMilliseconds?.toString()}>
+          <li key={item.id}>
+            {item.id}
             {item.city}
             {getFormattedDateTime(item.searchDateTime)}
             <IconButton
@@ -42,7 +47,7 @@ const SearchHistory: FC<SearchHistoryProps> = ({
             >
               <SearchIcon />
             </IconButton>
-            <IconButton onClick={() => onDelete(item.city)} aria-label="delete">
+            <IconButton onClick={() => onDelete(item.id)} aria-label="delete">
               <DeleteIcon />
             </IconButton>
           </li>
