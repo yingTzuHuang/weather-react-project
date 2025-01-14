@@ -1,4 +1,47 @@
-.search-input 
+.search-container {
+  display: flex;
+  width: 100%;
 }
+
+.search-input {
+  flex-grow: 1 !important;
+}
+.search-input .MuiFormControl-root {
+  width: 100%;
+}
+.search-input .MuiOutlinedInput-root {
+  border-radius: 20px;
+  background-color: #ffffff33;
+}
+
+.no-border-input {
+  border: none !important;
+}
+
+/* Remove the border from MuiOutlinedInput-root */
+.no-border-input .MuiOutlinedInput-root {
+  border: none !important;
+  box-shadow: none;
+}
+
+/* Remove hover and focus outlines */
+.no-border-input .MuiOutlinedInput-notchedOutline {
+  border: none !important;
+}
+
 .search-icon-button {
+  flex-shrink: 0;
+  border-radius: 20px !important;
+  background-color: #6c40b5 !important;
+  color: white !important;
+  min-width: 60px !important;
+  min-height: 60px !important;
+}
+
+.search-icon-button:hover {
+  background-color: #7a50c3 !important; /* Slightly lighter purple on hover */
+}
+
+.search-icon-button .MuiSvgIcon-root {
+  font-size: 34px !important;
 }

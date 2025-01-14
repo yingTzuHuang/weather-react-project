@@ -12,7 +12,6 @@ import "./SearchBar.css";
 
 interface SearchBarProps {
   cityOptions: SearchOption[];
-  //   onChangeSearch: () => void;
   onChangeSearchInput: (input: string) => void;
   onSearch: () => void;
   value: string;
@@ -26,13 +25,12 @@ const filterOptions = createFilterOptions<SearchOption>({
 
 const SearchBar: FC<SearchBarProps> = ({
   cityOptions,
-  //   onChangeSearch,
   onChangeSearchInput,
   value,
   onSearch,
 }) => {
   return (
-    <Stack direction="row" spacing={1}>
+    <Stack className="search-container" direction="row" spacing={2}>
       <Autocomplete
         className="search-input"
         disableClearable
@@ -47,15 +45,19 @@ const SearchBar: FC<SearchBarProps> = ({
         }}
         renderInput={(params) => (
           <TextField
+            className="no-border-input"
             sx={{ width: 300 }}
             {...params}
             label="City/Country"
             type="search"
+            fullWidth
           />
         )}
         freeSolo
       />
       <IconButton
+        disableRipple
+        className="search-icon-button"
         onClick={(e) => {
           onSearch();
         }}

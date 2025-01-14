@@ -9,6 +9,7 @@ import TodaysWeather from "./components/TodaysWeather";
 import { getSearchOptionFromICity } from "./utils/searchUtil";
 import useSearchHistory from "./hooks/useSearchHistory";
 import SearchHistory from "./components/SearchHistory";
+import { Box, Container, Stack } from "@mui/material";
 
 const defaultTargetCity = "";
 
@@ -76,27 +77,31 @@ function App() {
   }, [searchValue]);
 
   return (
-    <>
-      <SearchBar
-        cityOptions={cities}
-        onChangeSearchInput={onChangeSearchInput}
-        onSearch={onSearch}
-        value={inputValue}
-      />
-      <TodaysWeather
-        error={error}
-        loading={loading}
-        weather={weather}
-        searchTime={searchTime}
-      />
-      <SearchHistory
-        items={historyItems}
-        onSearch={onSearchAgain}
-        onDelete={onDelete}
-        error={historyError}
-        loading={loadingHistory}
-      />
-    </>
+    <Stack spacing={15}>
+      <Box sx={{ top: 0, width: "100%" }}>
+        <SearchBar
+          cityOptions={cities}
+          onChangeSearchInput={onChangeSearchInput}
+          onSearch={onSearch}
+          value={inputValue}
+        />
+      </Box>
+      <Container>
+        <TodaysWeather
+          error={error}
+          loading={loading}
+          weather={weather}
+          searchTime={searchTime}
+        />
+        <SearchHistory
+          items={historyItems}
+          onSearch={onSearchAgain}
+          onDelete={onDelete}
+          error={historyError}
+          loading={loadingHistory}
+        />
+      </Container>
+    </Stack>
   );
 }
 
