@@ -1,49 +1,63 @@
 import { FC } from "react";
-import { Stack, IconButton, Autocomplete, TextField } from "@mui/material";
+import {
+  Stack,
+  IconButton,
+  Autocomplete,
+  TextField,
+  createFilterOptions,
+} from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { SearchOption } from "../models/SearchOption";
+import "./SearchBar.css";
 
 interface SearchBarProps {
   cityOptions: SearchOption[];
-  //   onChangeSearch: () => void;
   onChangeSearchInput: (input: string) => void;
-  onKeyDown: () => void;
   onSearch: () => void;
   value: string;
 }
 
+const filterOptions = createFilterOptions<SearchOption>({
+  matchFrom: "start",
+  stringify: (option) => option.id,
+  limit: 100,
+});
+
 const SearchBar: FC<SearchBarProps> = ({
   cityOptions,
-  //   onChangeSearch,
   onChangeSearchInput,
   value,
   onSearch,
-  onKeyDown,
 }) => {
   return (
-    <Stack direction="row" spacing={1}>
+    <Stack className="search-container" direction="row" spacing={2}>
       <Autocomplete
+        className="search-input"
+        disableClearable
+        filterOptions={filterOptions}
         getOptionLabel={(option: SearchOption | string) =>
           typeof option === "string" ? option : (option as SearchOption).id
         }
         options={cityOptions}
         value={value}
-        // onChange={() => onChangeSearch()}
         onInputChange={(_, newValue) => {
           onChangeSearchInput(newValue || "");
         }}
         renderInput={(params) => (
           <TextField
+            className="no-border-input"
             sx={{ width: 300 }}
-            className="search-text-field"
             {...params}
-            label="Select a city"
-            onKeyDown={() => onKeyDown()}
+            label="City/Country"
+            type="search"
+            fullWidth
           />
         )}
         freeSolo
       />
       <IconButton
+        disableRipple
+        className="search-icon-button"
         onClick={(e) => {
           onSearch();
         }}

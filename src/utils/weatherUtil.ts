@@ -2,7 +2,7 @@ import { WeatherDto } from "../services/weatherService";
 import { Weather } from "../models/Weather";
 
 // Function to convert WeatherDto to Weather
-function convertWeatherDtoToWeather(weatherDto: WeatherDto): Weather {
+const convertWeatherDtoToWeather = (weatherDto: WeatherDto): Weather => {
   return {
     city: weatherDto.name,
     countryCode: weatherDto.sys?.country,
@@ -14,6 +14,6 @@ function convertWeatherDtoToWeather(weatherDto: WeatherDto): Weather {
     temperatureLow: weatherDto.main?.temp_min,
     weather: weatherDto.weather?.[0]?.main,
   };
-}
+};
 
 export { convertWeatherDtoToWeather };

@@ -36,6 +36,7 @@ const TodaysWeather: React.FC<WeatherProps> = ({
       <p>
         {weather.city}, {weather.countryCode}
       </p>
+      <p>Weather: {weather.weather}</p>
       <p>Description: {weather.description}</p>
       <p>
         Temperature: {weather.temperature}° L: {weather.temperatureLow}°
@@ -43,7 +44,7 @@ const TodaysWeather: React.FC<WeatherProps> = ({
       <p>
         H: {weather.temperatureHigh}° L: {weather.temperatureLow}°
       </p>
-      <p>Humidity: {weather.humidity}</p>
+      <p>Humidity: {weather.humidity}%</p>
       <p>Time: {formattedTime}</p>
     </div>
   );

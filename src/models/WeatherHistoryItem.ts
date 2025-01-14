@@ -1,5 +1,5 @@
-export interface WeatherHistoryItem {
+export interface SearchHistoryItem {
+  id: number;
   city: string;
-  countryCode: string;
   searchDateTime: Date;
 }
