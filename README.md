@@ -1,5 +1,16 @@
 # Today's Weather ReactJS Application
 
+**To make it work on local, add the following to *.env.local***
+VITE_OPEN_WEATHER_API_BASE_URL=https://api.openweathermap.org/data/2.5/weather
+
+VITE_OPEN_WEATHER_API_KEY=*YOUR_API_KEY*
+
+VITE_LOCAL_STORAGE_KEY=*YOUR_KEY_TO_IDENTIFY_SEARCH_HISTORY_FROM_LOCAL_STORAGE*
+
+VITE_LOCAL_STORAGE_SECRET_KEY=*YOUR_SECRET_KEY_FOR_ENCRYPTING_SEARCH_HISTORY* 
+
+VITE_LOCAL_STORAGE_MAX_SIZE=10
+
 **Functional Requirements & Assumptions:**
 
 1. Search Bar
